@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flag-service
+  namespace: togglemaster
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flag-service
+  template:
+    metadata:
+      labels:
+        app: flag-service
+    spec:
+      containers:
+      - name: flag-service
+        image: 277688492624.dkr.ecr.us-east-1.amazonaws.com/flag-service:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8002
+        # Carrega DATABASE_URL automaticamente do Secret
+        envFrom:
+        - secretRef:
+            name: flag-db-secret
+        env:
+        - name: PORT
+          value: "8002"
+        # BUSCA A URL NO CONFIGMAP
+        - name: AUTH_SERVICE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: flag-service-config
+              key: AUTH_SERVICE_URL
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"

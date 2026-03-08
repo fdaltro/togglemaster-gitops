@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: evaluation-config
+  namespace: togglemaster
+data:
+  PORT: "8004"
+  REDIS_URL: "rediss://evaluation-cache-4h0oek.serverless.use1.cache.amazonaws.com:6379"
+  AUTH_SERVICE_URL: "http://auth-service:8001"
+  FLAG_SERVICE_URL: "http://flag-service:8002"
+  TARGETING_SERVICE_URL: "http://targeting-service:8003"
+  AWS_SQS_URL: "https://sqs.us-east-1.amazonaws.com/277688492624/evaluation-to-analytics-queue"
+  AWS_REGION: "us-east-1"
