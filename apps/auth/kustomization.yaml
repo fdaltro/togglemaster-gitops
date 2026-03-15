@@ -6,12 +6,6 @@ resources:
 - service.yaml
 
 images:
-- name: 174935208848.dkr.ecr.us-east-1.amazonaws.com/togglemaster-auth
-  newName: 174935208848.dkr.ecr.us-east-1.amazonaws.com/togglemaster-auth
-  newTag: v1.0.0-94506e9
-- name: 277688492624.dkr.ecr.us-east-1.amazonaws.com/togglemaster-auth
-  newName: 277688492624.dkr.ecr.us-east-1.amazonaws.com/togglemaster-auth
-  newTag: latest
 - name: togglemaster-auth
   newName: 174935208848.dkr.ecr.us-east-1.amazonaws.com/togglemaster-auth
   newTag: v1.0.0-9ba9a67

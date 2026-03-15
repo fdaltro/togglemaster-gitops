@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: auth-service
-        image: 174935208848.dkr.ecr.us-east-1.amazonaws.com/togglemaster-auth:v1.0.0-94506e9
+        image: togglemaster-auth
         ports:
         - containerPort: 8001
 
