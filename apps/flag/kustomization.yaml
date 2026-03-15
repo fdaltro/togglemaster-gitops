@@ -8,7 +8,7 @@ resources:
 images:
 - name: 174935208848.dkr.ecr.us-east-1.amazonaws.com/togglemaster-flag
   newName: 174935208848.dkr.ecr.us-east-1.amazonaws.com/togglemaster-flag
-  newTag: v1.0.0-e132a1b
+  newTag: v1.0.0-94506e9
 - name: 277688492624.dkr.ecr.us-east-1.amazonaws.com/togglemaster-flag
   newName: 277688492624.dkr.ecr.us-east-1.amazonaws.com/togglemaster-flag
   newTag: latest
