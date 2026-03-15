@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: analytics-service
-        image: 277688492624.dkr.ecr.us-east-1.amazonaws.com/analytics-service:v1
+        image: togglemaster-analytics # O Kustomize vai trocar isso pelo endereço do ECR
         ports:
         - containerPort: 8005
 
