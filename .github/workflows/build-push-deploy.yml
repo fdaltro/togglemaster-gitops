@@ -1,0 +1,59 @@
+name: Build, Push and Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write # Essencial para permitir que o Action altere os arquivos YAML
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    env:
+      ECR_REGISTRY: 277688492624.dkr.ecr.us-east-1.amazonaws.com
+      SERVICES: "auth flag targeting evaluation analytics"
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: us-east-1
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and Push Images
+        run: |
+          # Gera a tag baseada no hash curto do commit
+          VERSION="v1.0.0-$(echo ${{ github.sha }} | cut -c1-7)"
+          
+          for SERVICE in $SERVICES; do
+            REPO_NAME="togglemaster-$SERVICE"
+            IMAGE_URI="$ECR_REGISTRY/$REPO_NAME"
+            
+            echo "Construindo $SERVICE..."
+            # Ajuste o caminho ./$SERVICE-service-main conforme sua pasta real
+            docker build -t $IMAGE_URI:$VERSION ./$SERVICE-service-main
+            docker push $IMAGE_URI:$VERSION
+            
+            # Atualiza o kustomization.yaml do serviço usando o comando nativo do kustomize
+            cd apps/$SERVICE
+            kustomize edit set image $IMAGE_URI=$IMAGE_URI:$VERSION
+            cd ../..
+          done
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add .
+          git commit -m "chore: update image tags to v1.0.0-${{ github.sha }}" || echo "No changes to commit"
+          git push origin main
