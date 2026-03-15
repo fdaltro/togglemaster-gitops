@@ -8,4 +8,4 @@ resources:
 images:
 - name: togglemaster-targeting
   newName: 174935208848.dkr.ecr.us-east-1.amazonaws.com/togglemaster-targeting
-  newTag: v1.0.0-9ba9a67
+  newTag: v1.0.0-726333d
