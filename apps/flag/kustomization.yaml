@@ -2,10 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - deployment.yaml
-  - service.yaml
+- deployment.yaml
+- service.yaml
 
 images:
-  - name: 277688492624.dkr.ecr.us-east-1.amazonaws.com/togglemaster-flag
-    newName: 277688492624.dkr.ecr.us-east-1.amazonaws.com/togglemaster-flag
-    newTag: latest
+- name: 174935208848.dkr.ecr.us-east-1.amazonaws.com/togglemaster-flag
+  newName: 174935208848.dkr.ecr.us-east-1.amazonaws.com/togglemaster-flag
+  newTag: v1.0.0-e132a1b
+- name: 277688492624.dkr.ecr.us-east-1.amazonaws.com/togglemaster-flag
+  newName: 277688492624.dkr.ecr.us-east-1.amazonaws.com/togglemaster-flag
+  newTag: latest
