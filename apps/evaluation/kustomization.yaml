@@ -12,3 +12,6 @@ images:
 - name: 277688492624.dkr.ecr.us-east-1.amazonaws.com/togglemaster-evaluation
   newName: 277688492624.dkr.ecr.us-east-1.amazonaws.com/togglemaster-evaluation
   newTag: latest
+- name: togglemaster-evaluation
+  newName: 174935208848.dkr.ecr.us-east-1.amazonaws.com/togglemaster-evaluation
+  newTag: v1.0.0-9ba9a67

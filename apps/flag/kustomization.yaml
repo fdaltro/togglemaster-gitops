@@ -12,3 +12,6 @@ images:
 - name: 277688492624.dkr.ecr.us-east-1.amazonaws.com/togglemaster-flag
   newName: 277688492624.dkr.ecr.us-east-1.amazonaws.com/togglemaster-flag
   newTag: latest
+- name: togglemaster-flag
+  newName: 174935208848.dkr.ecr.us-east-1.amazonaws.com/togglemaster-flag
+  newTag: v1.0.0-9ba9a67
