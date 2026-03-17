@@ -2,10 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - deployment.yaml
-  - service.yaml
+- deployment.yaml
+- service.yaml
 
 images:
-  - name: togglemaster-analytics # Use este nome simples como "âncora"
-    newName: 174935208848.dkr.ecr.us-east-1.amazonaws.com/togglemaster-analytics
-    newTag: v1.0.0-9ba9a67
+- name: togglemaster-analytics
+  newName: 174935208848.dkr.ecr.us-east-1.amazonaws.com/togglemaster-analytics
+  newTag: v1.0.0-f45735d
