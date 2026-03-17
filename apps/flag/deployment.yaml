@@ -22,7 +22,7 @@ spec:
         # Carrega DATABASE_URL automaticamente do Secret
         envFrom:
         - secretRef:
-            name: flag-db-secret
+            name: flag-service-secret
         env:
         - name: PORT
           value: "8002"
