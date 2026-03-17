@@ -8,4 +8,4 @@ resources:
 images:
 - name: togglemaster-evaluation
   newName: 174935208848.dkr.ecr.us-east-1.amazonaws.com/togglemaster-evaluation
-  newTag: v1.0.0-f45735d
+  newTag: v1.0.0-fa1af89
