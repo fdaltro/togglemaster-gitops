@@ -8,4 +8,4 @@ resources:
 images:
 - name: togglemaster-auth
   newName: 174935208848.dkr.ecr.us-east-1.amazonaws.com/togglemaster-auth
-  newTag: v1.0.0-59cb5d7
+  newTag: v1.0.0-c461464
