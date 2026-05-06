@@ -8,4 +8,4 @@ resources:
 images:
 - name: togglemaster-flag
   newName: 504491092699.dkr.ecr.us-east-1.amazonaws.com/togglemaster-flag
-  newTag: v1.0.0-5c51943
+  newTag: v1.0.0-46aadce
