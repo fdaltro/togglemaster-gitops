@@ -27,6 +27,15 @@ spec:
         - secretRef:
             name: aws-credentials
 
+        # ---> VARIÁVEIS DO OPENTELEMETRY <---
+        env:
+        - name: OTEL_SERVICE_NAME
+          value: "analytics-service"
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: "http://otel-collector.observabilidade.svc.cluster.local:4317"
+        - name: OTEL_EXPORTER_OTLP_INSECURE
+          value: "true"
+
         resources:
           requests:
             cpu: "100m"

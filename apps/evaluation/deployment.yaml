@@ -18,6 +18,7 @@ spec:
         image: togglemaster-evaluation
         ports:
         - containerPort: 8004
+        
         envFrom:
         - configMapRef:
             name: evaluation-config
@@ -26,6 +27,15 @@ spec:
         # Carrega as chaves AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY e AWS_SESSION_TOKEN
         - secretRef:
             name: aws-credentials
+
+        # ---> ENV PARA O OPENTELEMETRY <---
+        env:
+        - name: OTEL_SERVICE_NAME
+          value: "evaluation-service"
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: "http://otel-collector.observabilidade.svc.cluster.local:4317"
+        - name: OTEL_EXPORTER_OTLP_INSECURE
+          value: "true"
 
         resources:
           requests:

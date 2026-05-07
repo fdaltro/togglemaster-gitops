@@ -27,6 +27,13 @@ spec:
               key: DATABASE_URL
         - name: PORT
           value: "8003"
+        # ---> VARIÁVEIS DO OPENTELEMETRY <---
+        - name: OTEL_SERVICE_NAME
+          value: "targeting-service"
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: "http://otel-collector.observabilidade.svc.cluster.local:4317"
+        - name: OTEL_EXPORTER_OTLP_INSECURE
+          value: "true"
         # ADIÇÃO: Mapeamento da URL do serviço de autenticação
         - name: AUTH_SERVICE_URL
           valueFrom:

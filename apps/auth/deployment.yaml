@@ -38,6 +38,16 @@ spec:
               name: auth-config
               key: PORT
 
+        # ---> VARIÁVEIS DO OPENTELEMETRY  <---
+        - name: OTEL_SERVICE_NAME
+          value: "auth-service"
+          
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: "http://otel-collector.observabilidade.svc.cluster.local:4317"
+          
+        - name: OTEL_EXPORTER_OTLP_INSECURE
+          value: "true"
+
         resources:
           requests:
             cpu: "100m"
