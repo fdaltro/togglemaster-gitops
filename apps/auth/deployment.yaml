@@ -17,55 +17,63 @@ spec:
       - name: auth-service
         image: togglemaster-auth
         ports:
-        - containerPort: 8001
+        - [cite_start]containerPort: 8001 [cite: 3]
 
         env:
         - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
               name: auth-secret
-              key: DATABASE_URL
+              [cite_start]key: DATABASE_URL [cite: 3]
 
         - name: MASTER_KEY
           valueFrom:
             secretKeyRef:
               name: auth-secret
-              key: MASTER_KEY
+              [cite_start]key: MASTER_KEY [cite: 3]
 
         - name: PORT
           valueFrom:
             configMapKeyRef:
               name: auth-config
-              key: PORT
+              [cite_start]key: PORT [cite: 3]
 
-        # ---> VARIÁVEIS DO OPENTELEMETRY  <---
+        # ---> VARIÁVEIS DO OPENTELEMETRY (ATUALIZADAS) <---
         - name: OTEL_SERVICE_NAME
-          value: "auth-service"
+          [cite_start]value: "auth-service" [cite: 3]
           
         - name: OTEL_EXPORTER_OTLP_ENDPOINT
-          value: "http://otel-collector.observabilidade.svc.cluster.local:4317"
+          [cite_start]value: "http://otel-collector.observabilidade.svc.cluster.local:4317" [cite: 3]
           
         - name: OTEL_EXPORTER_OTLP_INSECURE
-          value: "true"
+          [cite_start]value: "true" [cite: 3]
+
+        # Define explicitamente o protocolo gRPC para o SDK de Go
+        - name: OTEL_EXPORTER_OTLP_PROTOCOL
+          value: "grpc"
+
+        # Tags essenciais para o Datadog identificar o ambiente e a versão
+        - name: OTEL_RESOURCE_ATTRIBUTES
+          value: "deployment.environment=prod,service.version=1.0.0"
 
         resources:
           requests:
-            cpu: "100m"
-            memory: "128Mi"
+            [cite_start]cpu: "100m" [cite: 3]
+            [cite_start]memory: "128Mi" [cite: 3]
           limits:
-            cpu: "300m"
-            memory: "256Mi"
+            [cite_start]cpu: "300m" [cite: 3]
+            [cite_start]memory: "256Mi" [cite: 3]
 
         readinessProbe:
           httpGet:
-            path: /health
-            port: 8001
-          initialDelaySeconds: 10
-          periodSeconds: 10
+            [cite_start]path: /health [cite: 3]
+            [cite_start]port: 8001 [cite: 3]
+          [cite_start]initialDelaySeconds: 10 [cite: 3]
+          [cite_start]periodSeconds: 10 [cite: 3]
 
         livenessProbe:
           httpGet:
-            path: /health
-            port: 8001
-          initialDelaySeconds: 20
-          periodSeconds: 20
+            [cite_start]path: /health [cite: 3]
+            [cite_start]port: 8001 [cite: 3]
+          [cite_start]initialDelaySeconds: 20 [cite: 3]
+          [cite_start]periodSeconds: 20 [cite: 3]
