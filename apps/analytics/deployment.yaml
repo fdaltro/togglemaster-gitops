@@ -22,8 +22,6 @@ spec:
         envFrom:
         - configMapRef:
             name: analytics-config
-        # O Kubernetes injetará automaticamente as chaves:
-        # AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN e AWS_REGION
         - secretRef:
             name: aws-credentials
 
@@ -35,6 +33,12 @@ spec:
           value: "http://otel-collector.observabilidade.svc.cluster.local:4317"
         - name: OTEL_EXPORTER_OTLP_INSECURE
           value: "true"
+        # 1. Força o uso de gRPC (compatível com a porta 4317)
+        - name: OTEL_EXPORTER_OTLP_PROTOCOL
+          value: "grpc"
+        # 2. Crucial para o Datadog agrupar o mapa: env e version
+        - name: OTEL_RESOURCE_ATTRIBUTES
+          value: "deployment.environment=prod,service.version=1.0.0"
 
         resources:
           requests:
