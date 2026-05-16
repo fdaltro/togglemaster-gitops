@@ -34,6 +34,12 @@ spec:
           value: "http://otel-collector.observabilidade.svc.cluster.local:4317"
         - name: OTEL_EXPORTER_OTLP_INSECURE
           value: "true"
+        - name: OTEL_PROPAGATORS
+          value: "tracecontext,baggage"
+        - name: OTEL_EXPORTER_OTLP_PROTOCOL
+          value: "grpc"
+        - name: OTEL_RESOURCE_ATTRIBUTES
+          value: "deployment.environment=prod,service.version=1.0.0"
         # ADIÇÃO: Mapeamento da URL do serviço de autenticação
         - name: AUTH_SERVICE_URL
           valueFrom:

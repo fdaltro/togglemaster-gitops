@@ -39,7 +39,8 @@ spec:
         # 2. Crucial para o Datadog agrupar o mapa: env e version
         - name: OTEL_RESOURCE_ATTRIBUTES
           value: "deployment.environment=prod,service.version=1.0.0"
-
+        - name: OTEL_PROPAGATORS 
+          value: "tracecontext,baggage"
         resources:
           requests:
             cpu: "100m"
