@@ -28,6 +28,12 @@ kind: Job
 metadata:
   name: flag-db-setup
   namespace: togglemaster
+  annotations:
+    # 🚀 CONFIGURAÇÃO DE HOOK DO ARGOCD:
+    # 1. Executa a criação das tabelas ANTES de atualizar os pods da aplicação
+    argocd.argoproj.io/hook: PreSync
+    # 2. Deleta o Job antigo automaticamente antes de rodar o novo, evitando travamentos de imutabilidade
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
   template:
     spec:

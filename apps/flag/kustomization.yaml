@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
 - deployment.yaml
 - service.yaml
+- flag-db-init.yaml
 
 images:
 - name: togglemaster-flag

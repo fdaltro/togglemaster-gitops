@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
 - deployment.yaml
 - service.yaml
+- targeting-db-init.yaml
 
 images:
 - name: togglemaster-targeting

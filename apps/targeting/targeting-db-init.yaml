@@ -28,6 +28,12 @@ kind: Job
 metadata:
   name: targeting-db-setup
   namespace: togglemaster
+  annotations:
+    # 🚀 CONFIGURAÇÃO DE HOOK DO ARGOCD:
+    # 1. Corre a inicialização do banco de dados ANTES do deploy do microsserviço
+    argocd.argoproj.io/hook: PreSync
+    # 2. Elimina o Job antigo automaticamente antes de criar o novo, evitando erros de imutabilidade
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
   template:
     spec:
