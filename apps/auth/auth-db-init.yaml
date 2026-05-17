@@ -15,9 +15,15 @@ data:
         is_active BOOLEAN DEFAULT true,
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
     );
-    -- INSERE A CHAVE ADMIN-SECRETO-123 NA INICIALIZAÇÃO
+    
+    -- 1. Chave do Evaluation Service
     INSERT INTO api_keys (name, key_hash, is_active) 
-    VALUES ('evaluation-service-internal', 'ee7281862cd2f7311ce63a920ec0cf1a774673620e791eeb0cc501708abce028', true)
+    VALUES ('evaluation-service-internal', 'ee72816b370e2f8ec1c5e37689aac124e34b34d48a895cb87a25e203ee42a3d7', true)
+    ON CONFLICT (key_hash) DO NOTHING;
+
+    -- 2. Chave Master (Para Handshake e Criação de Flags via curl)
+    INSERT INTO api_keys (name, key_hash, is_active) 
+    VALUES ('master-admin-key', '815c79fbfae5f815b8e66f610bb1899c9ad7124499f1cc5eca31050b3c62e9d9', true)
     ON CONFLICT (key_hash) DO NOTHING;
 ---
 apiVersion: batch/v1
