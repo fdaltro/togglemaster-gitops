@@ -3,6 +3,10 @@ kind: ConfigMap
 metadata:
   name: flag-db-init-sql
   namespace: togglemaster
+  annotations:
+    # 👉 ADICIONADO AQUI: O ConfigMap também precisa nascer no PreSync!
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 data:
   init.sql: |
     CREATE TABLE IF NOT EXISTS flags (

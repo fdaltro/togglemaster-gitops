@@ -15,6 +15,11 @@ data:
         is_active BOOLEAN DEFAULT true,
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
     );
+    -- 👉 NOVO: Injeta a chave fixa automaticamente!
+    -- O "ON CONFLICT DO NOTHING" garante que não dê erro se rodar o Job 2 vezes
+    INSERT INTO api_keys (name, key_hash, is_active) 
+    VALUES ('evaluation-service-internal', '66d5b0a331dfcecd50fb27f673f47e335abaf5f1ba3253b8782bb5458ce3e9db', true)
+    ON CONFLICT (key_hash) DO NOTHING;
 ---
 apiVersion: batch/v1
 kind: Job
