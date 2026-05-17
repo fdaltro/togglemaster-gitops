@@ -15,10 +15,9 @@ data:
         is_active BOOLEAN DEFAULT true,
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
     );
-    -- 👉 NOVO: Injeta a chave fixa automaticamente!
-    -- O "ON CONFLICT DO NOTHING" garante que não dê erro se rodar o Job 2 vezes
+    -- INSERE A CHAVE ADMIN-SECRETO-123 NA INICIALIZAÇÃO
     INSERT INTO api_keys (name, key_hash, is_active) 
-    VALUES ('evaluation-service-internal', '66d5b0a331dfcecd50fb27f673f47e335abaf5f1ba3253b8782bb5458ce3e9db', true)
+    VALUES ('evaluation-service-internal', 'ee7281862cd2f7311ce63a920ec0cf1a774673620e791eeb0cc501708abce028', true)
     ON CONFLICT (key_hash) DO NOTHING;
 ---
 apiVersion: batch/v1
